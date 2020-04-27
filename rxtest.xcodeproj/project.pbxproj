@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0730683E330BE98EBA266176 /* Pods_rxtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F366BFDD331C5E6F2D62C185 /* Pods_rxtest.framework */; };
+		7757CA3A24567062005CD84A /* OperatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7757CA3924567062005CD84A /* OperatorViewController.swift */; };
 		77733EBE23BDA41C00FCA670 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77733EBD23BDA41C00FCA670 /* TableViewController.swift */; };
 		77733EC123BDB0E500FCA670 /* NetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77733EC023BDB0E500FCA670 /* NetworkViewController.swift */; };
 		77733EC323BDB30400FCA670 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77733EC223BDB30400FCA670 /* ViewModel.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		32755B214F3C2CD161A6EC13 /* Pods-rxtest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rxtest.release.xcconfig"; path = "Target Support Files/Pods-rxtest/Pods-rxtest.release.xcconfig"; sourceTree = "<group>"; };
 		42434947A2B53A14B5D7B140 /* Pods-rxtest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rxtest.debug.xcconfig"; path = "Target Support Files/Pods-rxtest/Pods-rxtest.debug.xcconfig"; sourceTree = "<group>"; };
+		7757CA3924567062005CD84A /* OperatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperatorViewController.swift; sourceTree = "<group>"; };
 		77733EBD23BDA41C00FCA670 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		77733EC023BDB0E500FCA670 /* NetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewController.swift; sourceTree = "<group>"; };
 		77733EC223BDB30400FCA670 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7757CA3824567047005CD84A /* Operator */ = {
+			isa = PBXGroup;
+			children = (
+				7757CA3924567062005CD84A /* OperatorViewController.swift */,
+			);
+			path = Operator;
+			sourceTree = "<group>";
+		};
 		77733EBF23BDB0C100FCA670 /* NetworkRxMVVM */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 		77EB082E23B4A3F900CB73D6 /* rxtest */ = {
 			isa = PBXGroup;
 			children = (
+				7757CA3824567047005CD84A /* Operator */,
 				77733EBF23BDB0C100FCA670 /* NetworkRxMVVM */,
 				77EB082F23B4A3F900CB73D6 /* AppDelegate.swift */,
 				77EB083123B4A3FA00CB73D6 /* SceneDelegate.swift */,
@@ -228,6 +239,7 @@
 			files = (
 				77733EC523BDC3D600FCA670 /* Repository.swift in Sources */,
 				77EB083423B4A3FA00CB73D6 /* ViewController.swift in Sources */,
+				7757CA3A24567062005CD84A /* OperatorViewController.swift in Sources */,
 				77EB083023B4A3F900CB73D6 /* AppDelegate.swift in Sources */,
 				77EB083223B4A3FA00CB73D6 /* SceneDelegate.swift in Sources */,
 				77733EC123BDB0E500FCA670 /* NetworkViewController.swift in Sources */,

@@ -19,11 +19,23 @@ class TableVC: UIViewController {
 class ViewController: UIViewController {
 
     let disposedBag: DisposeBag = DisposeBag()
+    var array:[Int] = [Int]()
+    var b:[Int] {
+        return [Int]()
+    }
+
+    var c:[Int] = {
+        return [3]
+    }()
+
+    lazy var d:[Int] = {
+        return [3]
+    }()
 
     var asyncSubject:AsyncSubject<Int> = AsyncSubject<Int>()
     var publishSubject: PublishSubject<Int> = PublishSubject<Int>()
-    var behaviorSubject: BehaviorSubject<Int> = BehaviorSubject<Int>(value: -1)
-    var relaySubject: ReplaySubject<Int> = ReplaySubject<Int>.create(bufferSize: 100)
+    var behaviorSubject: BehaviorSubject<Int> = BehaviorSubject<Int>(value: 0)
+    var replaySubject: ReplaySubject<Int> = ReplaySubject<Int>.create(bufferSize: 100)
 
     var asyncSubjectDisposable: Disposable?
     var publishSubjectDisposable: Disposable?
@@ -42,8 +54,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        testObservableBasic()
-
         var i:Int = 0
         DispatchQueue.global().async {
             while(true) {
@@ -51,7 +61,7 @@ class ViewController: UIViewController {
                 self.asyncSubject.onNext(i)
                 self.publishSubject.onNext(i)
                 self.behaviorSubject.onNext(i)
-                self.relaySubject.onNext(i)
+                self.replaySubject.onNext(i)
                 i += 1
 
                 DispatchQueue.main.async { [weak self] in
@@ -61,6 +71,15 @@ class ViewController: UIViewController {
             }
         }
 
+        Observable<Int>.interval(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
+        .take(10)
+            .bind(to: self.asyncSubject)
+            .disposed(by: self.disposedBag)
+
+        self.asyncSubject
+            .debug()
+            .subscribe()
+            .disposed(by: self.disposedBag)
     }
 
     @IBAction func btn1(_ sender: Any) {
@@ -105,7 +124,7 @@ class ViewController: UIViewController {
 
     @IBAction func btn4(_ sender: Any) {
         if (sender as! UISwitch).isOn == true {
-            relaySubjectDisposable =  relaySubject.observeOn(MainScheduler.instance).subscribe({ (event) in
+            relaySubjectDisposable =  replaySubject.observeOn(MainScheduler.instance).subscribe({ (event) in
                 self.t4.text.append(String(event.element!) + "\n")
             })
 
