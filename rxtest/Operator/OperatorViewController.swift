@@ -18,8 +18,8 @@ class OperatorViewController: UIViewController {
     @IBOutlet weak var lbScanOpResult: UILabel!
     @IBOutlet weak var btnScanOp: UIButton! {
         didSet {
-            btnScanOp.rx.tap.scan(false) { lastValue, newValue in
-                return !lastValue
+            btnScanOp.rx.tap.scan(false) { [unowned self] (lastValue, newValue) in
+                return self.execute(with: lastValue)
             }.subscribe(onNext: { (value) in
                 print(value)
                 self.lbScanOpResult.text = String(format: "Result %d", value)
@@ -27,11 +27,32 @@ class OperatorViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var lbScanOpResult2: UILabel!
+
+    @IBOutlet weak var lbScanOpResult3: UILabel!
+    @IBOutlet weak var btnScanOp3: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        btnScanOp3.rx.tap.asDriver().scan(false) { lastValue, newValue in
+            return !lastValue
+        }.drive(self.lbScanOpResult3.rx.isHidden).disposed(by: self.disposeBag)
     }
     
+    func execute(with value:Bool) -> Bool {
+        print(value)
+        return !value
+    }
+
+    @IBAction func btnScanOp2Action(_ sender: Any) {
+
+        Observable.of(1,2,3,4,5).reduce(0, accumulator: +).subscribe(onNext: { (value) in
+            if self.lbScanOpResult2 != nil {
+                self.lbScanOpResult2.text = String(format: "Result %d", value)
+            }
+        }).disposed(by: self.disposeBag)
+    }
 
     /*
     // MARK: - Navigation
